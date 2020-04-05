@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">agenda</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="sign_in_button">Sign In</string>
 </resources>

@@ -1,8 +1,10 @@
-package com.example.agenda;
+package com.example.agenda.Main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.agenda.R;
 
 public class MainActivity extends AppCompatActivity {
 
