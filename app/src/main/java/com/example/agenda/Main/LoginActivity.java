@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void statSignIn(View view) {
+    public void startSignIn(View view) {
         Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
     }

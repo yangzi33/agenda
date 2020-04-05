@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.example.agenda.R;
 
-public class MainActivity extends AppCompatActivity {
+public class CalendarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
