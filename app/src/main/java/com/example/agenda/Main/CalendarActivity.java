@@ -2,8 +2,7 @@ package com.example.agenda.Main;
 
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,19 +23,27 @@ public class CalendarActivity extends AppCompatActivity {
 
         FloatingActionButton fab1 = findViewById(R.id.fab_add_event);
         FloatingActionButton fab2 = findViewById(R.id.fab_add_series);
+        FloatingActionButton fab3 = findViewById(R.id.fab_add_alarm);
 
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("fab1");
+                showToast("Add Event");
             }
         });
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("fab2");
+                showToast("Add Series");
             }
         });
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("Add Alarm");
+            }
+        });
+
     }
 
     public void showToast(String message) {

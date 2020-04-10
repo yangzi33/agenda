@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,9 +7,11 @@
     tools:context=".Main.CalendarActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -20,7 +22,10 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_calendar" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_calendar"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:layout_width="wrap_content"
@@ -28,6 +33,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         app:fab_addButtonColorNormal="@color/pink"
         app:fab_addButtonColorPressed="@color/pink_pressed"
         app:fab_addButtonPlusIconColor="@color/white"
@@ -36,26 +44,37 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_icon="@drawable/fab_add_alarm"
+            app:fab_size="mini"
+            app:fab_title="Add alarm" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_addButtonColorNormal="@color/white"
-            app:fab_addButtonColorPressed="@color/white_pressed"
-            app:fab_addButtonSize="mini"
-            app:fab_icon="@android:drawable/ic_menu_add"
-            app:fab_title="Add Event" />
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_icon="@drawable/fab_add"
+            app:fab_size="mini"
+            app:fab_title="Add event" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_series"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_addButtonColorNormal="@color/white"
-            app:fab_addButtonColorPressed="@color/white_pressed"
-            app:fab_addButtonSize="mini"
-            app:fab_icon="@android:drawable/ic_menu_add"
-            app:fab_title="Add Series" />
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_icon="@drawable/fab_add"
+            app:fab_size="mini"
+            app:fab_title="Add series" />
 
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
