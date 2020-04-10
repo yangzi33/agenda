@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.agenda.R;
 
@@ -21,14 +22,27 @@ public class CalendarActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab1 = findViewById(R.id.fab_add_event);
+        FloatingActionButton fab2 = findViewById(R.id.fab_add_series);
+
+        fab1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                showToast("fab1");
+            }
+        });
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("fab2");
             }
         });
     }
 
+    public void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
 }
+
+
