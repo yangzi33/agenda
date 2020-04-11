@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_USER_ID = "id";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
-    private static final String EMAIL = "email";
+//    private static final String EMAIL = "email";
 
     // Series table columns
     private static final String TABLE_SERIES = "series_table";
@@ -36,8 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "(" +
                 KEY_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 USERNAME + "TEXT," +
-                PASSWORD + "TEXT," +
-                EMAIL + "TEXT"
+                PASSWORD + "TEXT"
+//                EMAIL + "TEXT"
                 + ")";
 
         String CREATE_SERIES_TABLE = "CREATE TABLE " + TABLE_SERIES +
