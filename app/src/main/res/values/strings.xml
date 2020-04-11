@@ -5,7 +5,10 @@
     <string name="title_activity_calendar">CalendarActivity</string>
     <string name="enter_username">Username</string>
     <string name="enter_password">Password</string>
+    <string name="new_username">New Username</string>
     <string name="new_password">New password</string>
     <string name="repeat_password">Repeat password</string>
-    <string name="username_pw_invalid">Invalid Username or Password</string>
+    <string name="username_pw_invalid">Invalid Username or Password.</string>
+    <string name="incorrect_repeat_pw">Passwords did not match</string>
+    <string name="username_exsists">Username already exists</string>
 </resources>
