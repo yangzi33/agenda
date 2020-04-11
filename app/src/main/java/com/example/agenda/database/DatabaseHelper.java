@@ -2,6 +2,7 @@ package com.example.agenda.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -66,8 +67,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Log.d(TAG, "addUserData: adding " + username + ", " + password + " to " + TABLE_USERS);
 
-        long result = db.insert(TABLE_USERS, null, contentValues);
+        long result = -1;
+        if (checkIfDuplicate(TABLE_USERS, USERNAME, username)) {
+            result = db.insert(TABLE_USERS, null, contentValues);
+        }
+        return result != -1;
+    }
 
-        return result == -1;
+    private boolean checkIfDuplicate(String TableName, String colName, String fieldValue) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String Query = "Select * from " + TableName + " where " + colName + " = " + fieldValue;
+        Cursor cursor = db.rawQuery(Query, null);
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
     }
 }

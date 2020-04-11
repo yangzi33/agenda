@@ -31,7 +31,6 @@ public class SignUpActivity extends AppCompatActivity {
         EditText passwordInput = findViewById(R.id.signup_pw);
         EditText passwordRepeatInput = findViewById(R.id.signup_pw_repeat);
         TextView invalidRepeat = findViewById(R.id.incorrect_repeat_pw);
-        TextView usernameExists = findViewById(R.id.username_exists);
 
         username = usernameInput.getText().toString();
         password = passwordInput.getText().toString();
@@ -45,12 +44,14 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void addUser() {
+        TextView usernameExists = findViewById(R.id.username_exists);
         boolean insertUserData = mDatabaseHelper.addUserData(username, username);
 
         if (insertUserData) {
             toastMessage("Successfully registered.");
         } else {
             toastMessage("Failed to register.");
+            usernameExists.setVisibility(View.VISIBLE);
         }
     }
 
