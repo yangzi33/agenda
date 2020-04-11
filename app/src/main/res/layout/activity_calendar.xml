@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Main.CalendarActivity">
+    tools:context=".Activities.CalendarActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -44,6 +44,16 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_icon="@drawable/fab_add_event"
+            app:fab_size="mini"
+            app:fab_title="Add event" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,16 +62,6 @@
             app:fab_icon="@drawable/fab_add_alarm"
             app:fab_size="mini"
             app:fab_title="Add alarm" />
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_add_event"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/white"
-            app:fab_colorPressed="@color/white_pressed"
-            app:fab_icon="@drawable/fab_add"
-            app:fab_size="mini"
-            app:fab_title="Add event" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_series"

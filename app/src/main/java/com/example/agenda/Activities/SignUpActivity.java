@@ -1,4 +1,4 @@
-package com.example.agenda.Main;
+package com.example.agenda.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

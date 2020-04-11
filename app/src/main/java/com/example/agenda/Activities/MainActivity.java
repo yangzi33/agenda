@@ -1,4 +1,4 @@
-package com.example.agenda.Main;
+package com.example.agenda.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,17 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.agenda.R;
+import com.example.agenda.user.User;
 
-public class SignInActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
+
+    public static User loggedInUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_main);
     }
 
-    public void signIn(View view) {
-        Intent intent = new Intent(this, CalendarActivity.class);
-        startActivity(intent);
-    }
 }

@@ -1,4 +1,4 @@
-package com.example.agenda.Main;
+package com.example.agenda.Activities;
 //
 //import alert.AlertManager;
 //import event.EventManager;
@@ -26,7 +26,7 @@ public class Calendar {
 //    private static ArrayList<User> allUsers = new ArrayList<>();
 //
 //    // =============== Manager Instances ===============
-//    private static UserManager userManager = new UserManager();
+//    private static UserManager UserDataManager = new UserManager();
 //
 //    // =============== main.User Methods ===============
 //
@@ -50,7 +50,7 @@ public class Calendar {
 //                // register and save new user list
 //                success = register(scanner);
 //                if (success) {
-//                    if (!userManager.writeUserData(allUsers)) {
+//                    if (!UserDataManager.writeUserData(allUsers)) {
 //                        System.out.println("Warning: Failed to write data. " +
 //                                "This could cause data losses.");
 //                    }
@@ -169,7 +169,7 @@ public class Calendar {
 //    public static void main(String[] args) {
 //        // On startup, read all the stored Users / Events
 //        System.out.println("Initializing ...");
-//        allUsers = userManager.readUserData();
+//        allUsers = UserDataManager.readUserData();
 //        AlertManager.allAlerts = AlertManager.readAlertData();
 //        System.out.println("Initialization Done");
 //        String userInput = "";

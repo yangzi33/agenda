@@ -3,4 +3,9 @@
     <string name="sign_up_button">Sign Up</string>
     <string name="sign_in_button">Sign In</string>
     <string name="title_activity_calendar">CalendarActivity</string>
+    <string name="enter_username">Username</string>
+    <string name="enter_password">Password</string>
+    <string name="new_password">New password</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="username_pw_invalid">Invalid Username or Password</string>
 </resources>
