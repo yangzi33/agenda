@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,6 @@ import org.w3c.dom.Text;
 public class SignUpActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
-    private TextView usernameExists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +42,19 @@ public class SignUpActivity extends AppCompatActivity {
                 String passwordRepeat = passwordRepeatInput.getText().toString();
                 TextView invalidRepeat = (TextView) findViewById(R.id.incorrect_repeat_pw);
                 TextView signUpSuccess = (TextView) findViewById(R.id.signup_success);
+                TextView usernameExists = (TextView) findViewById(R.id.username_exists);
 
                 if (!password.equals(passwordRepeat)) {
                     invalidRepeat.setVisibility(View.VISIBLE);
-//                } else if (usernameDuplicate(username)) {
-//                    usernameExists.setVisibility(View.VISIBLE);
+                } else if (!usernameDuplicate(username)) {
+                    usernameExists.setVisibility(View.VISIBLE);
                 } else if (username.isEmpty() || password.isEmpty()) {
                     toastMessage("Fields cannot be blank.");
                 } else {
                     boolean insertUserData = myDb.addUserData(username, password);
                     if (insertUserData) {
                         invalidRepeat.setVisibility(View.GONE);
+                        usernameExists.setVisibility(View.GONE);
                         toastMessage("Successfully registered.");
                         signUpSuccess.setVisibility(View.VISIBLE);
                     } else {
@@ -84,13 +86,18 @@ public class SignUpActivity extends AppCompatActivity {
     private boolean usernameDuplicate(String fieldValue) {
         boolean duplicated = false;
         SQLiteDatabase tempDb = myDb.getReadableDatabase();
-        String Query = "SELECT * FROM " + DatabaseHelper.TABLE_USERS + " WHERE " + fieldValue + " = " + DatabaseHelper.USERNAME;
-        Cursor cursor = tempDb.rawQuery(Query, null);
-        if(cursor.getCount() > 0){
-            duplicated = true;
+        try{
+        String Query = "SELECT * FROM " + DatabaseHelper.TABLE_USERS + " WHERE username = " + fieldValue;
+            Cursor cursor = tempDb.rawQuery(Query, null);
+            if (cursor.getCount() > 0){
+                duplicated = true;
+            }
+            cursor.close();
+            tempDb.close();
+//            return duplicated;
+        } catch (SQLiteException e) {
+            e.printStackTrace();
         }
-        cursor.close();
-        tempDb.close();
         return duplicated;
     }
 
