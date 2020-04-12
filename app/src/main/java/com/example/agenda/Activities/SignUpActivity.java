@@ -14,14 +14,13 @@ import android.widget.Toast;
 import com.example.agenda.R;
 import com.example.agenda.database.DatabaseHelper;
 
+import org.w3c.dom.Text;
+
+
 public class SignUpActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
-    private Button signUpButton;
-    private EditText usernameInput, passwordInput, passwordRepeatInput;
-
-    private TextView invalidRepeat, usernameExists;
-//    String email;
+    private TextView usernameExists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,28 +28,33 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         myDb = new DatabaseHelper(this);
-        usernameInput = (EditText) findViewById(R.id.signup_username);
-        signUpButton = (Button) findViewById(R.id.signup_button);
-        passwordInput = (EditText) findViewById(R.id.signup_pw);
-        passwordRepeatInput = (EditText) findViewById(R.id.signup_pw_repeat);
-
-        invalidRepeat = findViewById(R.id.incorrect_repeat_pw);
-        usernameExists = findViewById(R.id.username_exists);
+        Button signUpButton = (Button) findViewById(R.id.signup_button);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
-            String username = usernameInput.getText().toString();
-            String password = passwordInput.getText().toString();
-            String passwordRepeat = passwordRepeatInput.getText().toString();
             @Override
             public void onClick(View v) {
+                EditText passwordRepeatInput = (EditText) findViewById(R.id.signup_pw_repeat);
+                EditText passwordInput = (EditText) findViewById(R.id.signup_pw);
+                EditText usernameInput = (EditText) findViewById(R.id.signup_username);
+
+                String username = usernameInput.getText().toString();
+                String password = passwordInput.getText().toString();
+                String passwordRepeat = passwordRepeatInput.getText().toString();
+                TextView invalidRepeat = (TextView) findViewById(R.id.incorrect_repeat_pw);
+                TextView signUpSuccess = (TextView) findViewById(R.id.signup_success);
+
                 if (!password.equals(passwordRepeat)) {
                     invalidRepeat.setVisibility(View.VISIBLE);
-                } else if (usernameDuplicate(username)) {
-                    usernameExists.setVisibility(View.VISIBLE);
+//                } else if (usernameDuplicate(username)) {
+//                    usernameExists.setVisibility(View.VISIBLE);
+                } else if (username.isEmpty() || password.isEmpty()) {
+                    toastMessage("Fields cannot be blank.");
                 } else {
                     boolean insertUserData = myDb.addUserData(username, password);
                     if (insertUserData) {
+                        invalidRepeat.setVisibility(View.GONE);
                         toastMessage("Successfully registered.");
+                        signUpSuccess.setVisibility(View.VISIBLE);
                     } else {
                         toastMessage("Something went wrong.");
                     }
@@ -78,15 +82,16 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean usernameDuplicate(String fieldValue) {
-        SQLiteDatabase db = myDb.getReadableDatabase();
-        String Query = "Select * from " + "user_table" + " where " + "username" + " = " + fieldValue;
-        Cursor cursor = db.rawQuery(Query, null);
-        if(cursor.getCount() <= 0){
-            cursor.close();
-            return false;
+        boolean duplicated = false;
+        SQLiteDatabase tempDb = myDb.getReadableDatabase();
+        String Query = "SELECT * FROM " + DatabaseHelper.TABLE_USERS + " WHERE " + fieldValue + " = " + DatabaseHelper.USERNAME;
+        Cursor cursor = tempDb.rawQuery(Query, null);
+        if(cursor.getCount() > 0){
+            duplicated = true;
         }
         cursor.close();
-        return true;
+        tempDb.close();
+        return duplicated;
     }
 
     private void toastMessage(String message) {

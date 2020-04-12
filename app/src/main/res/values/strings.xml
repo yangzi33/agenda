@@ -10,5 +10,6 @@
     <string name="repeat_password">Repeat password</string>
     <string name="username_pw_invalid">Invalid Username or Password.</string>
     <string name="incorrect_repeat_pw">Passwords did not match</string>
-    <string name="username_exsists">Username already exists</string>
+    <string name="username_exists">Username already exists</string>
+    <string name="sign_up_success">Success. Please navigate back to log in.</string>
 </resources>
