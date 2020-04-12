@@ -10,25 +10,28 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.agenda.Activities.SignUpActivity;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String TAG = "DatabaseHelper";
+    public static final String DATABASE_NAME = "agenda";
 
     // User table columns
-    private static final String TABLE_USERS = "user_table";
-    private static final String KEY_USER_ID = "id";
-    private static final String USERNAME = "username";
-    private static final String PASSWORD = "password";
-//    private static final String EMAIL = "email";
+    public static final String TABLE_USERS = "user_table";
+    public static final String KEY_USER_ID = "id";
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
+//    public static final String EMAIL = "email";
 
     // Series table columns
-    private static final String TABLE_SERIES = "series_table";
-    private static final String KEY_SERIES_ID = "id";
-    private static final String SERIES_NAME = "seriesName";
-    private static final String SERIES_REF_ID = "seriesID";
+    public static final String TABLE_SERIES = "series_table";
+    public static final String KEY_SERIES_ID = "id";
+    public static final String SERIES_NAME = "seriesName";
+    public static final String SERIES_REF_ID = "refID";
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, TABLE_USERS, null, 1);
+        super(context, DATABASE_NAME, null, 1);
+        SQLiteDatabase db = this.getWritableDatabase();
     }
 
     @Override
@@ -36,16 +39,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USERS +
                 "(" +
                 KEY_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                USERNAME + "TEXT," +
-                PASSWORD + "TEXT"
-//                EMAIL + "TEXT"
+                USERNAME + " TEXT, " +
+                PASSWORD + " TEXT "
                 + ")";
 
         String CREATE_SERIES_TABLE = "CREATE TABLE " + TABLE_SERIES +
                 "(" +
-                KEY_SERIES_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_SERIES_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 SERIES_REF_ID + " INTEGER REFERENCES " + TABLE_USERS + "," + // Foreign key for user ref
-                SERIES_NAME + "TEXT"
+                SERIES_NAME + " TEXT"
                 + ")";
 
         db.execSQL(CREATE_USER_TABLE);
@@ -65,24 +67,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(USERNAME, username);
         contentValues.put(PASSWORD, password);
 
-        Log.d(TAG, "addUserData: adding " + username + ", " + password + " to " + TABLE_USERS);
+        Log.d(DATABASE_NAME, "addUserData: adding " + username + ", " + password + " to " + TABLE_USERS);
 
-        long result = -1;
-        if (checkIfDuplicate(TABLE_USERS, USERNAME, username)) {
-            result = db.insert(TABLE_USERS, null, contentValues);
-        }
+        long result = db.insert(TABLE_USERS, null, contentValues);
+
         return result != -1;
-    }
-
-    private boolean checkIfDuplicate(String TableName, String colName, String fieldValue) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String Query = "Select * from " + TableName + " where " + colName + " = " + fieldValue;
-        Cursor cursor = db.rawQuery(Query, null);
-        if(cursor.getCount() <= 0){
-            cursor.close();
-            return false;
-        }
-        cursor.close();
-        return true;
     }
 }

@@ -2,6 +2,7 @@ package com.example.agenda.Activities;
 
 import android.os.Bundle;
 
+import com.example.agenda.database.DatabaseHelper;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,12 +15,15 @@ import com.example.agenda.R;
 
 public class CalendarActivity extends AppCompatActivity {
 
+    DatabaseHelper myDb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        myDb = new DatabaseHelper(this);
 
         FloatingActionButton fab1 = findViewById(R.id.fab_add_event);
         FloatingActionButton fab2 = findViewById(R.id.fab_add_series);
