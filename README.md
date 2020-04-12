@@ -1,7 +1,7 @@
 # agenda
-## TODO
+## Currently working on the following
 * Android GUI
-* (Optional) csv -> SQLite
+* csv -> SQLite
 ----
 Instructions adapted from Phase 1 
 
