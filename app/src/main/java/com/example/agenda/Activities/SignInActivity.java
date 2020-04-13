@@ -14,12 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agenda.R;
-import com.example.agenda.data.DataManager;
 import com.example.agenda.database.DatabaseHelper;
-import com.example.agenda.user.User;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class SignInActivity extends AppCompatActivity {
@@ -42,6 +38,7 @@ public class SignInActivity extends AppCompatActivity {
 
     public void signIn() {
         signInButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 String username = userNameInput.getText().toString();
@@ -49,7 +46,8 @@ public class SignInActivity extends AppCompatActivity {
                 if (validSignIn(username, password)) {
                     Intent intent = new Intent(v.getContext(), CalendarActivity.class);
 //                    intent.putExtra("USERNAME", username);
-//                    intent.putExtra("PASSWORD", password);
+//                    intent.putExtra("PASSWORD", password)
+                    intent.putExtra("USER_ID", myDb.getUserId(username, password));
                     startActivity(intent);
                 } else {
                     Toast.makeText(v.getContext(), "Invalid login info.", Toast.LENGTH_SHORT).show();
@@ -62,19 +60,17 @@ public class SignInActivity extends AppCompatActivity {
         SQLiteDatabase db = myDb.getReadableDatabase();
         String usernameCol = DatabaseHelper.USERNAME;
         String passwordCol = DatabaseHelper.PASSWORD;
-//        String checkUser = "SELECT * FROM " + DatabaseHelper.USER_TABLE + " WHERE " +
-//                usernameCol + " = " + username + " AND " + passwordCol + " = " +
-//                password;
+        boolean valid = false;
         Cursor cursor = db.query(DatabaseHelper.USER_TABLE, new String[]{"ID", usernameCol, passwordCol},
                 usernameCol + "=?", new String[]{username},
                 null, null, "password");
         if (cursor.moveToNext()) {
             String curr_pass = cursor.getString(cursor.getColumnIndex("password"));
             if (password.equals(curr_pass)) {
-                cursor.close();
-                return true;
+                valid = true;
             }
         }
-        return false;
+        cursor.close();
+        return valid;
     }
 }

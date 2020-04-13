@@ -16,7 +16,7 @@ import com.example.agenda.Activities.SignUpActivity;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "agenda.db";
+    private static final String DATABASE_NAME = "agenda.db";
 
     // Table for userdata
     public static final String USER_TABLE = "user_table";
@@ -54,65 +54,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return result != -1;
     }
+
+    /**
+     * Precondition: Username and password exist in one row of USER_TABLE
+     * @param username username string to check
+     * @param password password string to check
+     * @return the primary key of corresponding user with username and password.
+     */
+    public String getUserId(String username, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String Query = ("SELECT ID FROM " + USER_TABLE + " WHERE "
+                + USERNAME + " = " + username + " AND " + PASSWORD + " = " + password);
+        Cursor cursor = db.rawQuery(Query, null);
+        String ret = cursor.toString();
+        cursor.close();
+        return ret;
+    }
 }
-//public class DatabaseHelper extends SQLiteOpenHelper {
-//
-//    public static final String DATABASE_NAME = "agenda";
-//
-//    // User table columns
-//    public static final String TABLE_USERS = "user_table";
-//    public static final String KEY_USER_ID = "id";
-//    public static final String USERNAME = "username";
-//    public static final String PASSWORD = "password";
-////    public static final String EMAIL = "email";
-//
-//    // Series table columns
-//    public static final String TABLE_SERIES = "series_table";
-//    public static final String KEY_SERIES_ID = "id";
-//    public static final String SERIES_NAME = "seriesName";
-//    public static final String SERIES_REF_ID = "refID";
-//
-//    public DatabaseHelper(@Nullable Context context) {
-//        super(context, DATABASE_NAME, null, 1);
-//    }
-//
-//    @Override
-//    public void onCreate(SQLiteDatabase db) {
-//        String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USERS +
-//                "(" +
-//                KEY_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                USERNAME + " TEXT NOT NULL UNIQUE, " +
-//                PASSWORD + " TEXT NOT NULL"
-//                + ")";
-//
-//        String CREATE_SERIES_TABLE = "CREATE TABLE " + TABLE_SERIES +
-//                "(" +
-//                KEY_SERIES_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                SERIES_REF_ID + " INTEGER REFERENCES " + TABLE_USERS + ", " + // Foreign key for user ref
-//                SERIES_NAME + " TEXT"
-//                + ")";
-//
-//        db.execSQL(CREATE_USER_TABLE);
-//        db.execSQL(CREATE_SERIES_TABLE);
-//    }
-//
-//    @Override
-//    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SERIES);
-//        onCreate(db);
-//    }
-//
-//    public boolean addUserData(String username, String password) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(USERNAME, username);
-//        contentValues.put(PASSWORD, password);
-//
-//        Log.d(DATABASE_NAME, "addUserData: adding " + username + ", " + password + " to " + TABLE_USERS);
-//
-//        long result = db.insert(TABLE_USERS, null, contentValues);
-//
-//        return result != -1;
-//    }
-//}

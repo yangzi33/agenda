@@ -18,10 +18,8 @@ import com.example.agenda.R;
 public class CalendarActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
-//    Intent intent = this.getIntent();
-//    String username = intent.getStringExtra("USERNAME");
-//    String password = intent.getStringExtra("PASSWORD");
-//    User current_user = new User(username, password);
+    Intent intent = getIntent();
+    String USER_ID = intent.getStringExtra("USER_ID");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +54,11 @@ public class CalendarActivity extends AppCompatActivity {
 
     }
 
-    public void showToast(String message) {
+    /**
+     * Show short toast message
+     * @param message message to show
+     */
+    private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
