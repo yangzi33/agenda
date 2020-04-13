@@ -18,9 +18,10 @@ import com.example.agenda.R;
 public class CalendarActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
-    Intent intent = this.getIntent();
-    User current_user = new User(intent.getStringExtra("user"),
-            intent.getStringExtra("pw"));
+//    Intent intent = this.getIntent();
+//    String username = intent.getStringExtra("USERNAME");
+//    String password = intent.getStringExtra("PASSWORD");
+//    User current_user = new User(username, password);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
