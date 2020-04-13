@@ -3,12 +3,17 @@ package com.example.agenda.Activities;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.agenda.R;
 import com.example.agenda.data.DataManager;
+import com.example.agenda.database.DatabaseHelper;
 import com.example.agenda.user.User;
 
 import java.util.ArrayList;
@@ -17,35 +22,40 @@ import java.util.List;
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class SignInActivity extends AppCompatActivity {
 
-//    private ArrayList<User> allUser = DataManager.readData();
+    DatabaseHelper myDb;
+    Button signInButton;
+    TextView userNameInput, passwordInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        myDb = new DatabaseHelper(this);
+
+        signInButton = findViewById(R.id.sign_in_button);
+        userNameInput = findViewById(R.id.sign_in_input_username);
+        passwordInput = findViewById(R.id.sign_in_input_password);
+        signIn();
     }
 
-    public void signIn(View view) {
-//        EditText usernameInput = findViewById(R.id.sign_in_input_username);
-//        EditText passwordInput = findViewById(R.id.sign_in_input_password);
-//        TextView signInWarning = findViewById(R.id.invalid_sign_in_alert);
-//
-//        String username = usernameInput.getText().toString();
-//        String password = passwordInput.getText().toString();
-//
-//        boolean validInput = false;
-//
-//        for (User user: allUser) {
-//            if (user.username.equals(username) && user.password.equals(password)) {
-//                MainActivity.loggedInUser = user;
-//                validInput = true;
-//                Intent intent = new Intent(this, CalendarActivity.class);
-//                startActivity(intent);
-//            }
-//        }
-//        if (!validInput) {
-//        signInWarning.setVisibility(View.VISIBLE);}
+    public void signIn() {
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = userNameInput.getText().toString();
+                String password = passwordInput.getText().toString();
+                if (validSignIn(username, password) != -1) {
+                    Intent intent = new Intent(v.getContext(), CalendarActivity.class);
+                    intent.putExtra("user", username);
+                    intent.putExtra("pw", password);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
 
-//        System.out.println(allUser);
+    private int validSignIn(String username, String password) {
+        SQLiteDatabase db = myDb.getReadableDatabase();
+
     }
 }
