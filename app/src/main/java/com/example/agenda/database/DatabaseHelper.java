@@ -55,20 +55,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    /**
-     * Precondition: Username and password exist in one row of USER_TABLE
-     * @param username username string to check
-     * @param password password string to check
-     * @return the primary key of corresponding user with username and password.
-     */
-    public String getUserId(String username, String password) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        String Query = ("SELECT ID FROM " + USER_TABLE + " WHERE "
-                + USERNAME + " = " + username + " AND " + PASSWORD + " = " + password);
-        Cursor cursor = db.rawQuery(Query, null);
-        String ret = cursor.toString();
-        cursor.close();
-        return ret;
-    }
+//    /**
+//     * Precondition: Username and password exist in one row of USER_TABLE
+//     * @param username username string to check
+//     * @param password password string to check
+//     * @return the primary key of corresponding user with username and password.
+//     */
+//    public String getUserId(String username, String password) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//        String Query = ("SELECT ID FROM " + USER_TABLE + " WHERE "
+//                + USERNAME + " = " + username + " AND " + PASSWORD + " = " + password);
+//        Cursor cursor = db.rawQuery(Query, null);
+//        String ret = cursor.toString();
+//        cursor.close();
+//        return ret;
+//    }
 }

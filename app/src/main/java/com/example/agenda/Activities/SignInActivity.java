@@ -43,11 +43,12 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = userNameInput.getText().toString();
                 String password = passwordInput.getText().toString();
+//                String check = validSignIn(username, password);
                 if (validSignIn(username, password)) {
                     Intent intent = new Intent(v.getContext(), CalendarActivity.class);
 //                    intent.putExtra("USERNAME", username);
 //                    intent.putExtra("PASSWORD", password)
-                    intent.putExtra("USER_ID", myDb.getUserId(username, password));
+//                    intent.putExtra("USER_ID", check);
                     startActivity(intent);
                 } else {
                     Toast.makeText(v.getContext(), "Invalid login info.", Toast.LENGTH_SHORT).show();
@@ -58,6 +59,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private boolean validSignIn(String username, String password) {
         SQLiteDatabase db = myDb.getReadableDatabase();
+//        String userid = "-1";
         String usernameCol = DatabaseHelper.USERNAME;
         String passwordCol = DatabaseHelper.PASSWORD;
         boolean valid = false;
@@ -65,9 +67,10 @@ public class SignInActivity extends AppCompatActivity {
                 usernameCol + "=?", new String[]{username},
                 null, null, "password");
         if (cursor.moveToNext()) {
-            String curr_pass = cursor.getString(cursor.getColumnIndex("password"));
-            if (password.equals(curr_pass)) {
+            String curr_password = cursor.getString(cursor.getColumnIndex("password"));
+            if (password.equals(curr_password)) {
                 valid = true;
+//                userid = cursor.getString(cursor.getColumnIndex("ID"));
             }
         }
         cursor.close();
