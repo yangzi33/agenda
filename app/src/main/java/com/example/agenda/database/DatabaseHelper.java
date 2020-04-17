@@ -110,7 +110,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getUserEvents(String userId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        return db.rawQuery("select * from "+ EVENT_TABLE + " where " + EVENT_USER_REF + " = ?",new String[] {userId});
+        String query = "select * from "+ EVENT_TABLE + " where " + EVENT_USER_REF + " = '" + userId + "'";
+        return db.rawQuery(query, null) ;
     }
 
     public boolean addEvent(String name, String startTime, String endTime, String userId, String descriptions) {
