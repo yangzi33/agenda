@@ -15,7 +15,9 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="21dp"
         android:layout_marginLeft="21dp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:entries="@array/hour_arrays"
+        android:spinnerMode="dropdown" />
 
     <Spinner
         android:id="@+id/createEvent_endHour"
@@ -26,7 +28,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp" />
+        android:layout_marginRight="70dp"
+        android:entries="@array/hour_arrays" />
 
     <Spinner
         android:id="@+id/createEvent_startYear"
@@ -37,7 +40,8 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="21dp"
         android:layout_marginLeft="21dp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:entries="@array/year_arrays" />
 
     <Spinner
         android:id="@+id/createEvent_startMonth"
@@ -48,7 +52,8 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="21dp"
         android:layout_marginLeft="21dp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:entries="@array/month_arrays" />
 
     <Spinner
         android:id="@+id/createEvent_startDay"
@@ -59,7 +64,8 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="21dp"
         android:layout_marginLeft="21dp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:entries="@array/thirty_one_day_arrays" />
 
     <Spinner
         android:id="@+id/createEvent_startMin"
@@ -70,7 +76,8 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="21dp"
         android:layout_marginLeft="21dp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:entries="@array/minute_arrays" />
 
     <Spinner
         android:id="@+id/createEvent_endMonth"
@@ -81,7 +88,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp" />
+        android:layout_marginRight="70dp"
+        android:entries="@array/month_arrays" />
 
     <Spinner
         android:id="@+id/createEvent_endDay"
@@ -92,7 +100,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp" />
+        android:layout_marginRight="70dp"
+        android:entries="@array/thirty_one_day_arrays" />
 
     <Spinner
         android:id="@+id/createEvent_endYear"
@@ -103,7 +112,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginRight="71dp" />
+        android:layout_marginRight="71dp"
+        android:entries="@array/year_arrays" />
 
     <Spinner
         android:id="@+id/createEvent_endMin"
@@ -114,7 +124,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp" />
+        android:layout_marginRight="70dp"
+        android:entries="@array/minute_arrays" />
 
     <EditText
         android:id="@+id/createEvent_name"

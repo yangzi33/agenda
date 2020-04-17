@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".event.CreateEventActivity"></activity>
+        <activity android:name=".event.CreateEventActivity">
+            android:parentActivityName=".main.CalendarActivity">
+
+            <!-- Has back button to loginActivity -->
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".main.CalendarActivity" />
+        </activity>
         <activity
             android:name=".main.CalendarActivity"
             android:label="@string/title_activity_calendar"
