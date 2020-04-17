@@ -9,37 +9,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".event.CreateEventActivity"></activity>
         <activity
-            android:name=".Activities.CalendarActivity"
+            android:name=".main.CalendarActivity"
             android:label="@string/title_activity_calendar"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.SignInActivity"
-            android:parentActivityName=".Activities.LoginActivity">
-<!--Has back button to loginActivity-->
+            android:name=".login.SignInActivity"
+            android:parentActivityName=".login.LoginActivity">
+
+            <!-- Has back button to loginActivity -->
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activities.LoginActivity" />
+                android:value=".login.LoginActivity" />
         </activity>
         <activity
-            android:name=".Activities.SignUpActivity"
-            android:parentActivityName=".Activities.LoginActivity">
+            android:name=".login.SignUpActivity"
+            android:parentActivityName=".login.LoginActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activities.LoginActivity" />
+                android:value=".login.LoginActivity" />
         </activity>
-        <activity android:name=".Activities.LoginActivity">
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MainActivity">
-        </activity>
+        <activity android:name=".main.MainActivity"></activity>
     </application>
 
 </manifest>

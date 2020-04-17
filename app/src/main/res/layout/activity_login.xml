@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.LoginActivity">
+    tools:context=".login.LoginActivity">
 
     <Button
         android:id="@+id/button"
@@ -35,5 +35,5 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.312" />
+        app:layout_constraintVertical_bias="0.181" />
 </androidx.constraintlayout.widget.ConstraintLayout>
