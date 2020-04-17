@@ -15,6 +15,7 @@
     <string name="create_event_name">Event Name</string>
     <string name="event_repeating">Repeating</string>
     <string name="btn_create_event">Create Event</string>
+    <string name="event_desc">Descriptions</string>
 
     <string-array name="start_hour_arrays">
         <item>Start Hour</item>

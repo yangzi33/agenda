@@ -34,6 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String EVENT_NAME = "event_name";
     public static final String EVENT_START_TIME = "start_time";
     public static final String EVENT_END_TIME = "end_time";
+    public static final String EVENT_DESC = "descriptions";
     public static final String EVENT_POSTPONED = "postponed";
     public static final String EVENT_USER_REF = "user_reference";
 
@@ -51,7 +52,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 USERNAME + " TEXT NOT NULL UNIQUE, " + PASSWORD + " TEXT NOT NULL)";
         String createEventTable = "CREATE TABLE " + EVENT_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 EVENT_NAME + " TEXT NOT NULL, " + EVENT_START_TIME + " TEXT NOT NULL, " + EVENT_END_TIME +
-                " TEXT NOT NULL, " + EVENT_POSTPONED + " BOOLEAN NOT NULL," +
+                " TEXT NOT NULL, " + EVENT_DESC + " VARCHAR(120) DEFAULT NULL, "
+                + EVENT_POSTPONED + " BOOLEAN NOT NULL," +
                 " FOREIGN KEY (" + EVENT_USER_REF + ") REFERENCES " + USER_TABLE + "(" + "ID" + "));";
 
         db.execSQL(createUserTable);
@@ -102,8 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + " ID " + " FROM " + USER_TABLE +
                 " WHERE " + USERNAME + " = '" + username + "'";
-        Cursor data = db.rawQuery(query, null);
-        return data;
+        return db.rawQuery(query, null);
     }
 
     public Cursor getUserEvents(String userId) {
@@ -112,13 +113,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery("select * from "+ EVENT_TABLE + " where " + EVENT_USER_REF + " = ?",new String[] {userId});
     }
 
-    public boolean addEvent(String name, String startTime, String endTime, String userId) {
+    public boolean addEvent(String name, String startTime, String endTime, String userId, String descriptions) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(EVENT_NAME, name);
         contentValues.put(EVENT_START_TIME, startTime);
         contentValues.put(EVENT_END_TIME, endTime);
         contentValues.put(EVENT_USER_REF, userId);
+        contentValues.put(EVENT_DESC, descriptions);
 
         Log.d(DATABASE_NAME, "addUserData: adding event " + EVENT_NAME + "to" + USER_TABLE);
 

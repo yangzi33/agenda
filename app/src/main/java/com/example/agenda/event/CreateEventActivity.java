@@ -15,11 +15,13 @@ import com.example.agenda.R;
 import com.example.agenda.database.DatabaseHelper;
 import com.example.agenda.main.CalendarActivity;
 
+import static com.example.agenda.database.DatabaseHelper.loggedUser;
+
 public class CreateEventActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
 
-    EditText nameInput;
+    EditText nameInput, desc;
     Spinner startMinInput, startHourInput, startDayInput, startMonthInput, startYearInput;
     Spinner endMinInput, endHourInput, endDayInput, endMonthInput, endYearInput;
     Button createBtn;
@@ -41,6 +43,7 @@ public class CreateEventActivity extends AppCompatActivity {
         endHourInput = (Spinner) findViewById(R.id.createEvent_endHour);
         endHourInput = (Spinner) findViewById(R.id.createEvent_endMin);
         createBtn = (Button) findViewById(R.id.Btn_createEvent);
+        desc = (EditText) findViewById(R.id.event_desc_input);
         createEvent();
     }
 
@@ -53,7 +56,7 @@ public class CreateEventActivity extends AppCompatActivity {
                         startYearInput.toString() + " " + startHourInput.toString() + ":" + startMinInput.toString();
                 String endTime = endDayInput.toString() + "-" + endMonthInput.toString() + "-" +
                         endYearInput.toString() + " " + endHourInput.toString() + ":" + endMinInput.toString();
-                boolean insertEvent = myDb.addEvent(nameInput.toString(), startTime, endTime, "-1");
+                boolean insertEvent = myDb.addEvent(nameInput.toString(), startTime, endTime, loggedUser.getId(), desc.toString());
                 if (insertEvent) {
                     Intent intent = new Intent(v.getContext(), CalendarActivity.class);
                     startActivity(intent);
