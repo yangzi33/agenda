@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.agenda.database.DatabaseHelper;
+import com.example.agenda.event.CreateEventActivity;
 import com.example.agenda.user.User;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
@@ -41,7 +42,8 @@ public class CalendarActivity extends AppCompatActivity {
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("Add Event");
+                Intent createEventIntent = new Intent(v.getContext(), CreateEventActivity.class);
+                startActivity(createEventIntent);
             }
         });
         fab2.setOnClickListener(new View.OnClickListener() {

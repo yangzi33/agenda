@@ -6,6 +6,116 @@
     android:layout_height="match_parent"
     tools:context=".event.CreateEventActivity">
 
+    <Spinner
+        android:id="@+id/createEvent_startHour"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/createEvent_name"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/createEvent_endHour"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/createEvent_name"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp" />
+
+    <Spinner
+        android:id="@+id/createEvent_startYear"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/createEvent_startMonth"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/createEvent_startMonth"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/createEvent_startDay"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/createEvent_startDay"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/createEvent_startMin"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/createEvent_startMin"
+        android:layout_width="151dp"
+        android:layout_height="41dp"
+        android:layout_below="@+id/createEvent_startHour"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/createEvent_endMonth"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/createEvent_endDay"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp" />
+
+    <Spinner
+        android:id="@+id/createEvent_endDay"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/createEvent_endMin"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp" />
+
+    <Spinner
+        android:id="@+id/createEvent_endYear"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/createEvent_endMonth"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="71dp" />
+
+    <Spinner
+        android:id="@+id/createEvent_endMin"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/createEvent_endHour"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp" />
+
     <EditText
         android:id="@+id/createEvent_name"
         android:layout_width="wrap_content"
@@ -21,49 +131,17 @@
         android:hint="@string/create_event_name"
         android:inputType="textPersonName" />
 
-    <Spinner
-        android:id="@+id/createEvent_day"
-        android:layout_width="216dp"
-        android:layout_height="43dp"
-        android:layout_below="@+id/createEvent_name"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" />
-
-    <Spinner
-        android:id="@+id/createEvent_month"
-        android:layout_width="216dp"
-        android:layout_height="43dp"
-        android:layout_below="@+id/createEvent_day"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" />
-
-    <Spinner
-        android:id="@+id/createEvent_year"
-        android:layout_width="216dp"
-        android:layout_height="43dp"
-        android:layout_below="@+id/createEvent_month"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" />
-
     <Button
         android:id="@+id/Btn_createEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/createEvent_year"
+        android:layout_below="@+id/createEvent_startYear"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="63dp"
-        android:layout_marginLeft="63dp"
-        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="119dp"
+        android:layout_marginLeft="119dp"
+        android:layout_marginTop="28dp"
         android:text="@string/btn_create_event" />
 
 

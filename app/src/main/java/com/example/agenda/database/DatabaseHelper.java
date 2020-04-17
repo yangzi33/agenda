@@ -9,6 +9,10 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.agenda.event.Event;
+
+import java.util.ArrayList;
+
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -46,6 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 EVENT_NAME + " TEXT NOT NULL, " + EVENT_START_TIME + " TEXT NOT NULL, " + EVENT_END_TIME +
                 " TEXT NOT NULL, " + EVENT_POSTPONED + " BOOLEAN NOT NULL," +
                 " FOREIGN KEY (" + EVENT_USER_REF + ") REFERENCES " + USER_TABLE + "(" + "ID" + "));";
+
         db.execSQL(createUserTable);
         db.execSQL(createEventTable);
     }
@@ -91,5 +96,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             e.printStackTrace();
             return "-1";
         }
+    }
+
+    public Cursor getUserEvents(String userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        return db.rawQuery("select * from "+ EVENT_TABLE + " where " + EVENT_USER_REF + " = " + userId,null);
+    }
+
+    public boolean addEvent(String name, String startTime, String endTime) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(EVENT_NAME, name);
+        contentValues.put(EVENT_START_TIME, startTime);
+        contentValues.put(EVENT_END_TIME, endTime);
+
+        Log.d(DATABASE_NAME, "addUserData: adding event " + EVENT_NAME + "to" + USER_TABLE);
+
+        long result = db.insert(USER_TABLE, null, contentValues);
+
+        return result != -1;
     }
 }
