@@ -1,10 +1,12 @@
 package com.example.agenda.main;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import com.example.agenda.database.DatabaseHelper;
 import com.example.agenda.event.CreateEventActivity;
+import com.example.agenda.event.Event;
 import com.example.agenda.user.User;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
@@ -16,11 +18,14 @@ import android.widget.Toast;
 
 import com.example.agenda.R;
 
+import java.util.ArrayList;
+
 public class CalendarActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
     Intent intent = getIntent();
     public User loggedUser = DatabaseHelper.loggedUser;
+    public ArrayList<Event> allEvents;
 
 //    String USER_ID = intent.getStringExtra("USER_ID");
 
@@ -32,7 +37,18 @@ public class CalendarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         myDb = new DatabaseHelper(this);
 
-//        String username = intent.getStringExtra("USERNAME");
+        allEvents = new ArrayList<>();
+        Cursor eventsCursor = myDb.getUserEvents(loggedUser.getId());
+        while(eventsCursor.moveToNext()){
+            // get the event value from the database
+            // then add it to the ArrayList
+            // this ArrayList will be used for RecyclerView
+            Event curr_event = new Event(eventsCursor.getString(1),
+                    eventsCursor.getString(2),
+                    eventsCursor.getString(3),
+                    eventsCursor.getString(0));
+            allEvents.add(curr_event);
+        }
 
         FloatingActionButton fab1 = findViewById(R.id.fab_add_event);
         FloatingActionButton fab2 = findViewById(R.id.fab_add_series);

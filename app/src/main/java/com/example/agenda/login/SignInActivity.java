@@ -47,7 +47,7 @@ public class SignInActivity extends AppCompatActivity {
                 String password = passwordInput.getText().toString();
                 if (validSignIn(username, password)) {
                     Intent intent = new Intent(v.getContext(), CalendarActivity.class);
-                    DatabaseHelper.loggedUser = new User(username, password, myDb.getUserId(username));
+                    DatabaseHelper.loggedUser = new User(username, password, myDb.getUserId(username).toString());
                     startActivity(intent);
                 } else {
                     Toast.makeText(v.getContext(), "Invalid login info.", Toast.LENGTH_SHORT).show();

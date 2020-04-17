@@ -82,23 +82,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param username username string to check
      * @return the primary key of corresponding user with username and password.
      */
-    public String getUserId(String username) {
+    public Cursor getUserId(String username) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//        try {Cursor cursor = db.query(DatabaseHelper.USER_TABLE, new String[]{"ID", USERNAME, PASSWORD},
+//                USERNAME + "=?", new String[]{username},
+//                null, null, null);
+//        if (cursor.moveToNext()){
+//            String userId = cursor.getString(cursor.getColumnIndex("ID"));
+//            cursor.close();
+//            return userId;}
+//        else {
+//            return null;
+//            }
+//        } catch (RuntimeException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        try {Cursor cursor = db.query(DatabaseHelper.USER_TABLE, new String[]{"ID", USERNAME, PASSWORD},
-                USERNAME + "=?", new String[]{username},
-                null, null, null);
-        if (cursor.moveToNext()){
-            String userId = cursor.getString(cursor.getColumnIndex("ID"));
-            cursor.close();
-            return userId;}
-        else {
-            return "-1";
-            }
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            return "-1";
-        }
+        String query = "SELECT " + " ID " + " FROM " + USER_TABLE +
+                " WHERE " + USERNAME + " = '" + username + "'";
+        Cursor data = db.rawQuery(query, null);
+        return data;
     }
 
     public Cursor getUserEvents(String userId) {
