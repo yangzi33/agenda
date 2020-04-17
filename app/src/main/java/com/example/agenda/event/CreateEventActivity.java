@@ -53,7 +53,7 @@ public class CreateEventActivity extends AppCompatActivity {
                         startYearInput.toString() + " " + startHourInput.toString() + ":" + startMinInput.toString();
                 String endTime = endDayInput.toString() + "-" + endMonthInput.toString() + "-" +
                         endYearInput.toString() + " " + endHourInput.toString() + ":" + endMinInput.toString();
-                boolean insertEvent = myDb.addEvent(nameInput.toString(), startTime, endTime);
+                boolean insertEvent = myDb.addEvent(nameInput.toString(), startTime, endTime, "-1");
                 if (insertEvent) {
                     Intent intent = new Intent(v.getContext(), CalendarActivity.class);
                     startActivity(intent);

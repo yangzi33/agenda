@@ -47,8 +47,8 @@ public class SignInActivity extends AppCompatActivity {
 //                String check = validSignIn(username, password);
                 if (validSignIn(username, password)) {
                     Intent intent = new Intent(v.getContext(), CalendarActivity.class);
-                    intent.putExtra("USERNAME", username);
-                    intent.putExtra("PASSWORD", password);
+//                    intent.putExtra("USERNAME", username);
+//                    intent.putExtra("PASSWORD", password);
                     startActivity(intent);
                 } else {
                     Toast.makeText(v.getContext(), "Invalid login info.", Toast.LENGTH_SHORT).show();

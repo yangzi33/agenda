@@ -22,7 +22,7 @@ public class CalendarActivity extends AppCompatActivity {
     Intent intent = getIntent();
     public User loggedUser;
 
-    String USER_ID = intent.getStringExtra("USER_ID");
+//    String USER_ID = intent.getStringExtra("USER_ID");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +32,8 @@ public class CalendarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         myDb = new DatabaseHelper(this);
 
-        String username = intent.getStringExtra("USERNAME");
-        loggedUser = new User(username, intent.getStringExtra("PASSWORD"), myDb.getUserId(username));
+//        String username = intent.getStringExtra("USERNAME");
+//        loggedUser = new User(username, intent.getStringExtra("PASSWORD"), myDb.getUserId(username));
 
         FloatingActionButton fab1 = findViewById(R.id.fab_add_event);
         FloatingActionButton fab2 = findViewById(R.id.fab_add_series);

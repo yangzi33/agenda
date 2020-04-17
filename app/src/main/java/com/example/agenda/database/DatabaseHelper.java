@@ -104,12 +104,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery("select * from "+ EVENT_TABLE + " where " + EVENT_USER_REF + " = " + userId,null);
     }
 
-    public boolean addEvent(String name, String startTime, String endTime) {
+    public boolean addEvent(String name, String startTime, String endTime, String userId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(EVENT_NAME, name);
         contentValues.put(EVENT_START_TIME, startTime);
         contentValues.put(EVENT_END_TIME, endTime);
+        contentValues.put(EVENT_USER_REF, userId);
 
         Log.d(DATABASE_NAME, "addUserData: adding event " + EVENT_NAME + "to" + USER_TABLE);
 
