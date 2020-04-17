@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.agenda.main.CalendarActivity;
 import com.example.agenda.R;
 import com.example.agenda.database.DatabaseHelper;
+import com.example.agenda.user.User;
 
 
 @RequiresApi(api = Build.VERSION_CODES.O)
@@ -44,11 +45,9 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = userNameInput.getText().toString();
                 String password = passwordInput.getText().toString();
-//                String check = validSignIn(username, password);
                 if (validSignIn(username, password)) {
                     Intent intent = new Intent(v.getContext(), CalendarActivity.class);
-//                    intent.putExtra("USERNAME", username);
-//                    intent.putExtra("PASSWORD", password);
+                    DatabaseHelper.loggedUser = new User(username, password, myDb.getUserId(username));
                     startActivity(intent);
                 } else {
                     Toast.makeText(v.getContext(), "Invalid login info.", Toast.LENGTH_SHORT).show();

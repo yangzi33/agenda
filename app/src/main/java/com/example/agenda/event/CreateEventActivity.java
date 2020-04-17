@@ -45,7 +45,7 @@ public class CreateEventActivity extends AppCompatActivity {
     }
 
     public void createEvent() {
-        // TODO: Pass event to Array, and display it usign RecyclerView
+        // TODO: Pass event to Array, and display it using RecyclerView
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

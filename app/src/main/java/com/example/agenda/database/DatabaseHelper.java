@@ -10,6 +10,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.example.agenda.event.Event;
+import com.example.agenda.user.User;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // For managers' use
 //    public static SQLiteDatabase db;
+
+    public static User loggedUser;
 
     public static final String DATABASE_NAME = "agenda.db";
 
@@ -101,7 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getUserEvents(String userId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        return db.rawQuery("select * from "+ EVENT_TABLE + " where " + EVENT_USER_REF + " = " + userId,null);
+        return db.rawQuery("select * from "+ EVENT_TABLE + " where " + EVENT_USER_REF + " = ?",new String[] {userId});
     }
 
     public boolean addEvent(String name, String startTime, String endTime, String userId) {

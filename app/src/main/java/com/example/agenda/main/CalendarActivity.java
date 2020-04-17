@@ -20,7 +20,7 @@ public class CalendarActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
     Intent intent = getIntent();
-    public User loggedUser;
+    public User loggedUser = DatabaseHelper.loggedUser;
 
 //    String USER_ID = intent.getStringExtra("USER_ID");
 
@@ -33,7 +33,6 @@ public class CalendarActivity extends AppCompatActivity {
         myDb = new DatabaseHelper(this);
 
 //        String username = intent.getStringExtra("USERNAME");
-//        loggedUser = new User(username, intent.getStringExtra("PASSWORD"), myDb.getUserId(username));
 
         FloatingActionButton fab1 = findViewById(R.id.fab_add_event);
         FloatingActionButton fab2 = findViewById(R.id.fab_add_series);
