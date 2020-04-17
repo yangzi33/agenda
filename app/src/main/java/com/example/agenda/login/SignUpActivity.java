@@ -64,6 +64,8 @@ public class SignUpActivity extends AppCompatActivity {
                         signUpSuccess.setVisibility(View.VISIBLE);
                     } else {
                         toastMessage("Something went wrong.");
+                        invalidRepeat.setVisibility(View.GONE);
+                        signUpSuccess.setVisibility(View.GONE);
                         usernameExists.setVisibility(View.VISIBLE);
                     }
                 // Exception thrown if username duplicates
