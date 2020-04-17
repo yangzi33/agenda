@@ -47,14 +47,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db = this.getWritableDatabase();
         String createUserTable = "CREATE TABLE " + USER_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 USERNAME + " TEXT NOT NULL UNIQUE, " + PASSWORD + " TEXT NOT NULL);";
-        String createEventTable = "CREATE TABLE " + EVENT_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+
+        String createEventTable = "CREATE TABLE " + EVENT_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 EVENT_NAME + " TEXT NOT NULL, " + EVENT_START_TIME + " TEXT NOT NULL, " + EVENT_END_TIME +
                 " TEXT NOT NULL, " + EVENT_DESC + " VARCHAR(120), "
-                + EVENT_POSTPONED + " BOOLEAN DEFAULT (FALSE), " +
-                "FOREIGN KEY (" + EVENT_USER_REF + ") REFERENCES " + USER_TABLE + " ( ID ));";
+                + EVENT_POSTPONED + " BOOLEAN DEFAULT (0), " + EVENT_USER_REF + " INTEGER," +
+                "FOREIGN KEY ( " + EVENT_USER_REF + " ) REFERENCES " + USER_TABLE + " ( ID ));";
 
         db.execSQL(createUserTable);
         db.execSQL(createEventTable);
@@ -63,6 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + EVENT_TABLE);
         onCreate(db);
     }
 
@@ -85,22 +86,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return the primary key of corresponding user with username and password.
      */
     public Cursor getUserId(String username) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        try {Cursor cursor = db.query(DatabaseHelper.USER_TABLE, new String[]{"ID", USERNAME, PASSWORD},
-//                USERNAME + "=?", new String[]{username},
-//                null, null, null);
-//        if (cursor.moveToNext()){
-//            String userId = cursor.getString(cursor.getColumnIndex("ID"));
-//            cursor.close();
-//            return userId;}
-//        else {
-//            return null;
-//            }
-//        } catch (RuntimeException e) {
-//            e.printStackTrace();
-//            return null;
-//        }
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + " ID " + " FROM " + USER_TABLE +
                 " WHERE " + USERNAME + " = '" + username + "'";
@@ -112,6 +97,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         String query = "select * from "+ EVENT_TABLE + " where " + EVENT_USER_REF + " = '" + userId + "'";
         return db.rawQuery(query, null) ;
+    }
+
+    public boolean validSignIn(String username, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean valid = false;
+        Cursor cursor = db.query(DatabaseHelper.USER_TABLE, new String[]{"ID", USERNAME, PASSWORD},
+                USERNAME + "=?", new String[]{username},
+                null, null, "password");
+        if (cursor.moveToNext()) {
+            String curr_password = cursor.getString(cursor.getColumnIndex("password"));
+            if (password.equals(curr_password)) {
+                valid = true;
+            }
+        }
+        cursor.close();
+        return valid;
     }
 
     public boolean addEvent(String name, String startTime, String endTime, String userId, String descriptions) {

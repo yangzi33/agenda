@@ -9,11 +9,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.agenda.database.DatabaseHelper;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import static com.example.agenda.database.DatabaseHelper.PASSWORD;
 import static com.example.agenda.database.DatabaseHelper.USERNAME;
 import static com.example.agenda.database.DatabaseHelper.USER_TABLE;
 
-public class UserManager extends AppCompatActivity {
+public class UserManager implements Observer {
+    @Override
+    public void update(Observable o, Object arg) {
+
+    }
 
 //    static DatabaseHelper myDb = new DatabaseHelper(this);
 //

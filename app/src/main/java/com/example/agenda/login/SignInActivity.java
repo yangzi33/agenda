@@ -45,7 +45,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = userNameInput.getText().toString();
                 String password = passwordInput.getText().toString();
-                if (validSignIn(username, password)) {
+                if (myDb.validSignIn(username, password)) {
                     Intent intent = new Intent(v.getContext(), CalendarActivity.class);
                     DatabaseHelper.loggedUser = new User(username, password, myDb.getUserId(username).toString());
                     startActivity(intent);
@@ -56,22 +56,4 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-    private boolean validSignIn(String username, String password) {
-        SQLiteDatabase db = myDb.getReadableDatabase();
-//        String userid = "-1";
-        String usernameCol = DatabaseHelper.USERNAME;
-        String passwordCol = DatabaseHelper.PASSWORD;
-        boolean valid = false;
-        Cursor cursor = db.query(DatabaseHelper.USER_TABLE, new String[]{"ID", usernameCol, passwordCol},
-                usernameCol + "=?", new String[]{username},
-                null, null, "password");
-        if (cursor.moveToNext()) {
-            String curr_password = cursor.getString(cursor.getColumnIndex("password"));
-            if (password.equals(curr_password)) {
-                valid = true;
-            }
-        }
-        cursor.close();
-        return valid;
-    }
 }

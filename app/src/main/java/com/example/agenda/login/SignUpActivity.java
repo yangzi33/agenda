@@ -64,10 +64,11 @@ public class SignUpActivity extends AppCompatActivity {
                         signUpSuccess.setVisibility(View.VISIBLE);
                     } else {
                         toastMessage("Something went wrong.");
+                        usernameExists.setVisibility(View.VISIBLE);
                     }
                 // Exception thrown if username duplicates
                 }} catch (SQLiteConstraintException e) {
-                    usernameExists.setVisibility(View.VISIBLE);
+                    e.printStackTrace();
                 }
             }
         });
