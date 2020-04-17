@@ -1,4 +1,4 @@
-package com.example.agenda.Activities;
+package com.example.agenda.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.agenda.R;
+import com.example.agenda.login.SignInActivity;
+import com.example.agenda.login.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

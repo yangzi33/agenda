@@ -1,4 +1,4 @@
-package com.example.agenda.Activities;
+package com.example.agenda.login;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.agenda.main.CalendarActivity;
 import com.example.agenda.R;
 import com.example.agenda.database.DatabaseHelper;
 
@@ -46,9 +47,8 @@ public class SignInActivity extends AppCompatActivity {
 //                String check = validSignIn(username, password);
                 if (validSignIn(username, password)) {
                     Intent intent = new Intent(v.getContext(), CalendarActivity.class);
-//                    intent.putExtra("USERNAME", username);
-//                    intent.putExtra("PASSWORD", password)
-//                    intent.putExtra("USER_ID", check);
+                    intent.putExtra("USERNAME", username);
+                    intent.putExtra("PASSWORD", password);
                     startActivity(intent);
                 } else {
                     Toast.makeText(v.getContext(), "Invalid login info.", Toast.LENGTH_SHORT).show();
@@ -70,7 +70,6 @@ public class SignInActivity extends AppCompatActivity {
             String curr_password = cursor.getString(cursor.getColumnIndex("password"));
             if (password.equals(curr_password)) {
                 valid = true;
-//                userid = cursor.getString(cursor.getColumnIndex("ID"));
             }
         }
         cursor.close();

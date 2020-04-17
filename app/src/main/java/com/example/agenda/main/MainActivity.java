@@ -1,10 +1,8 @@
-package com.example.agenda.Activities;
+package com.example.agenda.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.example.agenda.R;
 import com.example.agenda.user.User;

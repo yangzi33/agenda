@@ -1,4 +1,4 @@
-package com.example.agenda.Activities;
+package com.example.agenda.main;
 //
 //import alert.AlertManager;
 //import event.EventManager;

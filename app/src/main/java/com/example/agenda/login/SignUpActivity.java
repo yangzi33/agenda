@@ -1,4 +1,4 @@
-package com.example.agenda.Activities;
+package com.example.agenda.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.agenda.R;
 import com.example.agenda.database.DatabaseHelper;
+import com.example.agenda.database.UserManager;
 
 
 public class SignUpActivity extends AppCompatActivity {
@@ -64,6 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
                     } else {
                         toastMessage("Something went wrong.");
                     }
+                // Exception thrown if username duplicates
                 }} catch (SQLiteConstraintException e) {
                     usernameExists.setVisibility(View.VISIBLE);
                 }
@@ -71,21 +73,22 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private boolean usernameDuplicate(String fieldValue) {
-        boolean duplicated = false;
-        SQLiteDatabase tempDb = myDb.getReadableDatabase();
-        try{
-            String Query = ("SELECT * FROM " + DatabaseHelper.USER_TABLE + " WHERE "
-                    + DatabaseHelper.USERNAME + " = " + fieldValue);
-            Cursor cursor = tempDb.rawQuery(Query, null);
-            cursor.close();
-        } catch (SQLiteException e) {
-            e.printStackTrace();
-            duplicated = true;
-        }
-        tempDb.close();
-        return duplicated;
-    }
+//    not required any longer, since the values are set to be unique.
+//    private boolean usernameDuplicate(String fieldValue) {
+//        boolean duplicated = false;
+//        SQLiteDatabase tempDb = myDb.getReadableDatabase();
+//        try{
+//            String Query = ("SELECT * FROM " + DatabaseHelper.USER_TABLE + " WHERE "
+//                    + DatabaseHelper.USERNAME + " = " + fieldValue);
+//            Cursor cursor = tempDb.rawQuery(Query, null);
+//            cursor.close();
+//        } catch (SQLiteException e) {
+//            e.printStackTrace();
+//            duplicated = true;
+//        }
+//        tempDb.close();
+//        return duplicated;
+//    }
 
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
