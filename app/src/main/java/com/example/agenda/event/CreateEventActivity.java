@@ -1,9 +1,11 @@
 package com.example.agenda.event;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +17,9 @@ import com.example.agenda.R;
 import com.example.agenda.database.DatabaseHelper;
 import com.example.agenda.main.CalendarActivity;
 
-import static com.example.agenda.database.DatabaseHelper.loggedUser;
+import java.util.List;
+
+import static com.example.agenda.database.UserManager.loggedUser;
 
 public class CreateEventActivity extends AppCompatActivity {
 
@@ -41,7 +45,10 @@ public class CreateEventActivity extends AppCompatActivity {
         startMinInput = (Spinner) findViewById(R.id.createEvent_startMin);
         startHourInput = (Spinner) findViewById(R.id.createEvent_startHour);
         endHourInput = (Spinner) findViewById(R.id.createEvent_endHour);
-        endHourInput = (Spinner) findViewById(R.id.createEvent_endMin);
+        endMinInput = (Spinner) findViewById(R.id.createEvent_endMin);
+        endDayInput = (Spinner) findViewById(R.id.createEvent_endDay);
+        endMonthInput = (Spinner) findViewById(R.id.createEvent_endMonth);
+        endYearInput = (Spinner) findViewById(R.id.createEvent_endYear);
         createBtn = (Button) findViewById(R.id.Btn_createEvent);
         desc = (EditText) findViewById(R.id.event_desc_input);
         createEvent();
@@ -49,22 +56,25 @@ public class CreateEventActivity extends AppCompatActivity {
 
     public void createEvent() {
         createBtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+              if (!desc.toString().isEmpty() && !nameInput.toString().isEmpty()) {
                 String startTime = startDayInput.toString() + "-" + startMonthInput.toString() + "-" +
                         startYearInput.toString() + " " + startHourInput.toString() + ":" + startMinInput.toString();
                 String endTime = endDayInput.toString() + "-" + endMonthInput.toString() + "-" +
                         endYearInput.toString() + " " + endHourInput.toString() + ":" + endMinInput.toString();
                 boolean insertEvent = myDb.addEvent(nameInput.toString(), startTime, endTime, loggedUser.getId(), desc.toString());
                 if (insertEvent) {
-                    Intent intent = new Intent(v.getContext(), CalendarActivity.class);
-                    startActivity(intent);
                     Toast.makeText(v.getContext(), "Event Created", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(v.getContext(), "Something went wrong.", Toast.LENGTH_SHORT).show();
-                }
+                }} else {
+                  Toast.makeText(v.getContext(), "Event name cannot be empty", Toast.LENGTH_LONG).show();
+              }
             }
         });
     }
+
 
 }

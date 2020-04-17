@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.agenda.database.DatabaseHelper;
+import com.example.agenda.user.User;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -16,11 +17,9 @@ import static com.example.agenda.database.DatabaseHelper.PASSWORD;
 import static com.example.agenda.database.DatabaseHelper.USERNAME;
 import static com.example.agenda.database.DatabaseHelper.USER_TABLE;
 
-public class UserManager implements Observer {
-    @Override
-    public void update(Observable o, Object arg) {
+public class UserManager {
 
-    }
+    public static User loggedUser = new User("myname", "mypw", "1");
 
 //    static DatabaseHelper myDb = new DatabaseHelper(this);
 //

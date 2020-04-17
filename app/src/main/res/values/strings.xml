@@ -2,7 +2,7 @@
     <string name="app_name">agenda</string>
     <string name="sign_up_button">Sign Up</string>
     <string name="sign_in_button">Sign In</string>
-    <string name="title_activity_calendar">CalendarActivity</string>
+    <string name="title_activity_calendar">Events</string>
     <string name="enter_username">Username</string>
     <string name="enter_password">Password</string>
     <string name="new_username">New Username</string>

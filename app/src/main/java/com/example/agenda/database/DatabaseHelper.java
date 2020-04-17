@@ -20,8 +20,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // For managers' use
 //    public static SQLiteDatabase db;
 
-    public static User loggedUser;
-
     public static final String DATABASE_NAME = "agenda.db";
 
     // Table for User data

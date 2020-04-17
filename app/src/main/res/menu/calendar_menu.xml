@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:title="Load Events"
+    android:id="@+id/LoadEvents"/>
+<item android:title="User settings"
+    android:id="@+id/UserSettings"/>
+
+</menu>
