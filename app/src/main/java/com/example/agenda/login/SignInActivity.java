@@ -32,7 +32,7 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         myDb = new DatabaseHelper(this);
 
-        signInButton = findViewById(R.id.sign_in_button);
+        signInButton = (Button) findViewById(R.id.sign_in_button);
         userNameInput = findViewById(R.id.sign_in_input_username);
         passwordInput = findViewById(R.id.sign_in_input_password);
         signIn();

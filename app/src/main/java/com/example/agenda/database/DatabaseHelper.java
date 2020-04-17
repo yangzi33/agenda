@@ -49,12 +49,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db = this.getWritableDatabase();
         String createUserTable = "CREATE TABLE " + USER_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                USERNAME + " TEXT NOT NULL UNIQUE, " + PASSWORD + " TEXT NOT NULL)";
+                USERNAME + " TEXT NOT NULL UNIQUE, " + PASSWORD + " TEXT NOT NULL);";
         String createEventTable = "CREATE TABLE " + EVENT_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 EVENT_NAME + " TEXT NOT NULL, " + EVENT_START_TIME + " TEXT NOT NULL, " + EVENT_END_TIME +
-                " TEXT NOT NULL, " + EVENT_DESC + " VARCHAR(120) DEFAULT NULL, "
-                + EVENT_POSTPONED + " BOOLEAN NOT NULL," +
-                " FOREIGN KEY (" + EVENT_USER_REF + ") REFERENCES " + USER_TABLE + "(" + "ID" + "));";
+                " TEXT NOT NULL, " + EVENT_DESC + " VARCHAR(120), "
+                + EVENT_POSTPONED + " BOOLEAN DEFAULT (FALSE), " +
+                "FOREIGN KEY (" + EVENT_USER_REF + ") REFERENCES " + USER_TABLE + " ( ID ));";
 
         db.execSQL(createUserTable);
         db.execSQL(createEventTable);
