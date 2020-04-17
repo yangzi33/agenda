@@ -12,4 +12,7 @@
     <string name="incorrect_repeat_pw">Passwords did not match</string>
     <string name="username_exists">Username already exists</string>
     <string name="sign_up_success">Success. Please navigate back to log in.</string>
+    <string name="create_event_name">Event Name</string>
+    <string name="event_repeating">Repeating</string>
+    <string name="btn_create_event">Create Event</string>
 </resources>
