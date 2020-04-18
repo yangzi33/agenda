@@ -29,6 +29,7 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.event_item, parent, false);
+
         return new ViewHolder(v);
     }
 
@@ -37,11 +38,13 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.ViewHolder> 
         Event event = events.get(position);
 
         holder.textViewHead.setText(event.getName());
-        String shortDesc = event.getStartHour() + ": " + event.getStartMin() + ", " +
-                event.getStartMonth() + "-" + event.getStartDay() + ", " + event.getStartYear() + " to\n" +
-                event.getEndHour() + ": " + event.getEndMin() + ", " +
-                event.getEndMonth() + "-" + event.getEndDay();
+//        String shortDesc = event.getStartHour() + ": " + event.getStartMin() + ", " +
+//                event.getStartMonth() + "-" + event.getStartDay() + "-" + event.getStartYear() + " to\n" +
+//                event.getEndHour() + ": " + event.getEndMin() + ", " +
+//                event.getEndMonth() + "-" + event.getEndDay() + "-" + event.getEndYear();
+        String shortDesc = "Start: " + event.getStartTime() + "\nEnd: " + event.getEndTime();
         holder.textViewTime.setText(shortDesc);
+
     }
 
     @Override
@@ -57,8 +60,8 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.ViewHolder> 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewHead = (TextView) itemView.findViewById(R.id.EventCardName);
-            textViewTime = (TextView) itemView.findViewById(R.id.EventCardTime);
+            textViewHead = (TextView) itemView.findViewById(R.id.TextViewEventName);
+            textViewTime = (TextView) itemView.findViewById(R.id.TextViewEventDesc);
         }
     }
 }

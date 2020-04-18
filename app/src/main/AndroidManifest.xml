@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".event.CreateEventActivity">
+        <activity android:name=".series.RepeatSeriesActivity"></activity>
+        <activity android:name=".series.CreateSeriesActivity" />
+        <activity
+            android:name=".event.CreateEventActivity"
             android:parentActivityName=".main.CalendarActivity">
 
             <!-- Has back button to loginActivity -->
@@ -48,7 +51,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.MainActivity"></activity>
+        <activity android:name=".main.MainActivity" />
     </application>
 
 </manifest>

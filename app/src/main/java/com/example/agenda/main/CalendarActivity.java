@@ -28,14 +28,15 @@ import android.widget.Toast;
 import com.example.agenda.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class CalendarActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
     Intent intent = getIntent();
-    public User loggedUser = UserManager.loggedUser;
-    public ArrayList<Event> allEvents;
+    public User loggedUser;
+    public List<Event> allEvents;
 
     private RecyclerView eventRecycler;
     private RViewAdapter eventAdapter;
@@ -52,7 +53,7 @@ public class CalendarActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.LoadEvents:
-                break;
+                setRecycler();
             case R.id.UserSettings:
                 return false;
         }
@@ -66,13 +67,14 @@ public class CalendarActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        loggedUser = UserManager.loggedUser;
         eventRecycler = (RecyclerView) findViewById(R.id.EventRecyclerView);
         eventRecycler.setHasFixedSize(true);
         eventRecycler.setLayoutManager(new LinearLayoutManager(this));
 
         myDb = new DatabaseHelper(this);
 
-        setRecycler();
+//        setRecycler();
 
         FloatingActionButton fab1 = findViewById(R.id.fab_add_event);
         FloatingActionButton fab2 = findViewById(R.id.fab_add_series);
@@ -110,24 +112,25 @@ public class CalendarActivity extends AppCompatActivity {
     private void setRecycler() {
         allEvents = new ArrayList<>();
         Cursor eventsCursor = myDb.getUserEvents(loggedUser.getId());
-        while(eventsCursor.moveToNext()){
-            // get the event value from the database
-            // then add it to the ArrayList
-            // this ArrayList will be used for RecyclerView
-            Event curr_event = new Event(
-                    eventsCursor.getString(0),
-                    eventsCursor.getString(1),
-                    eventsCursor.getString(2),
-                    eventsCursor.getString(3),
-                    eventsCursor.getString(4)
-            );
-            allEvents.add(curr_event);
+//        while(eventsCursor.moveToNext()) {
+//            // get the event value from the database
+//            // then add it to the ArrayList
+//            // this ArrayList will be used for RecyclerView
+//            Event curr_event = new Event(
+//                    eventsCursor.getString(0),
+//                    eventsCursor.getString(1),
+//                    eventsCursor.getString(2),
+//                    eventsCursor.getString(3),
+//                    eventsCursor.getString(4)
+//            );}
+        for (int i = 0; i < 6;i++){
+        allEvents.add(new Event("1", "RepeatEvent", "11:00 May 1" + i + ", 2020",
+                "12:00 May 1" + i + ", 2020", ""));}
+
+            eventAdapter = new RViewAdapter(allEvents, this);
+            eventRecycler.setAdapter(eventAdapter);
+
         }
-
-        eventAdapter = new RViewAdapter(allEvents, this);
-        eventRecycler.setAdapter(eventAdapter);
-    }
-
 }
 
 

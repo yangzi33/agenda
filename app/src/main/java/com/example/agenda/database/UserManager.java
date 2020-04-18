@@ -19,37 +19,6 @@ import static com.example.agenda.database.DatabaseHelper.USER_TABLE;
 
 public class UserManager {
 
-    public static User loggedUser = new User("myname", "mypw", "1");
+    public static User loggedUser;
 
-//    static DatabaseHelper myDb = new DatabaseHelper(this);
-//
-//    public static boolean addUser(String username, String password) {
-//
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(USERNAME, username);
-//        contentValues.put(PASSWORD, password);
-//
-//        Log.d(DatabaseHelper.DATABASE_NAME, "addUserData: adding " + username + ", " + password + " to " + USER_TABLE);
-//
-//        long result = myDb.insert(USER_TABLE, null, contentValues);
-//
-//        return result != -1;
-//    }
-//
-//    public static String getUserId(String username) {
-//        return '1';
-//    }
-
-//    public static boolean changeUserPassword(String id, String username, String password) {
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(USERNAME, username);
-//        contentValues.put(PASSWORD, password);
-//        contentValues.put("ID", id);
-//        myDb.update(USER_TABLE, contentValues, "ID = ?", new String[] { id });
-//        return true;
-//    }
-//
-//    public static Integer removeUser (String id) {
-//        return myDb.delete(DatabaseHelper.USER_TABLE, "ID = ?",new String[] { id });
-//    }
 }

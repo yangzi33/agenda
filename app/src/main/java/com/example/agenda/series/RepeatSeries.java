@@ -1,8 +1,6 @@
-//package series;
+//package com.example.agenda.series;
 //
-//import event.Event;
-//import event.EventManager;
-//import event.ReadWriteCSV;
+//import com.example.agenda.event.Event;
 //import sun.util.resources.CalendarData;
 //
 //import java.text.ParseException;
@@ -64,11 +62,8 @@
 //            String eventStartDate = startSDF.format(startCalendar.getTime());
 //            String eventEndDate = endSDF.format(endCalendar.getTime());
 //
-//            int eventIdNum = EventManager.allEvents.size() + 1;
-//            String eventId = "event" + eventIdNum;
-//
-//            Event newEvent = new Event(name, eventStartDate, eventEndDate, eventId);
-//            EventManager.allEvents.add(newEvent);
+//            Event newEvent = new Event(name, eventStartDate, eventEndDate);
+//            allEvents.add(newEvent);
 //            eventArray.add(newEvent);
 //
 //            switch (frequency){

@@ -36,6 +36,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String EVENT_POSTPONED = "postponed";
     public static final String EVENT_USER_REF = "user_reference";
 
+    // Table for alerts
+    public static final String ALERT_TABLE = "alert_table";
+    public static final String ALERT_NAME = "alert_name";
+    public static final String ALERT_EVENT_REF = "event_ref";
+
 //+ " FOREIGN KEY ("+TASK_CAT+") REFERENCES "+CAT_TABLE+"("+CAT_ID+"));";
     // Table for series
 
@@ -54,6 +59,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + EVENT_POSTPONED + " BOOLEAN DEFAULT (0), " + EVENT_USER_REF + " INTEGER," +
                 "FOREIGN KEY ( " + EVENT_USER_REF + " ) REFERENCES " + USER_TABLE + " ( ID ));";
 
+        String createAlertTable = "CREATE TABLE alert_table (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "alert_name TEXT NOT NULL, event_ref INT, FOREIGN KEY ( event_ref ) REFERENCES event_table ( ID ))";
+
+        db.execSQL(createAlertTable);
         db.execSQL(createUserTable);
         db.execSQL(createEventTable);
     }
@@ -122,9 +131,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(EVENT_USER_REF, userId);
         contentValues.put(EVENT_DESC, descriptions);
 
-        Log.d(DATABASE_NAME, "addUserData: adding event " + EVENT_NAME + "to" + USER_TABLE);
+        Log.d(DATABASE_NAME, "addUserData: adding event " + EVENT_NAME + "to" + EVENT_TABLE);
 
-        long result = db.insert(USER_TABLE, null, contentValues);
+        long result = db.insert(EVENT_TABLE, null, contentValues);
 
         return result != -1;
     }

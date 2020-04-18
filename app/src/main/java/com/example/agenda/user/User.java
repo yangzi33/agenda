@@ -33,5 +33,15 @@ public class User {
         return id;
     }
 
+    public boolean setEmail(String email) {
+        if (email.matches("^(.+)@(.+)$")) {
+            this.email = email;
+            return true;
+        } return false;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }
 
