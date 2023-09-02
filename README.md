@@ -1,6 +1,6 @@
 # Agenda - an Android Calendar App
 ----
-Note. *Time will be selected from dropdown bar, so there should not be a formatting problem any longer.*
+*Note. Time will be selected from dropdown bar, so there should not be a formatting problem any longer.*
 
 Instructions:
 1. Register or login:
