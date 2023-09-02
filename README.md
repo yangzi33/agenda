@@ -1,11 +1,6 @@
-# agenda
-## Currently working on the following
-* Android GUI
-* csv -> SQLite
+# Agenda - an Android Calendar App
 ----
-Instructions adapted from Phase 1 
-
-Update April: Note that time will be selected from dropdown bar, so there should not be a formatting problem any longer.
+Note. *Time will be selected from dropdown bar, so there should not be a formatting problem any longer.*
 
 Instructions:
 1. Register or login:
